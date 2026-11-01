@@ -4,10 +4,8 @@
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: 56px;
-  padding: 40px;
-  background: var(--white);
-  border: 1px solid var(--dark-line);
-  border-radius: 6px;
+  padding: 40px 40px 24px;
+  background: #fff;
 }
 .contact-form-intro {
   max-width: 300px;
@@ -137,6 +135,10 @@
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
+.contact-form-status:empty {
+  min-height: 0;
+  padding-top: 0;
+}
 .contact-form-honeypot {
   display: none;
 }
@@ -145,7 +147,7 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
     max-width: 680px;
-    padding: 32px;
+    padding: 32px 32px 20px;
   }
   .contact-form-intro {
     max-width: 480px;
@@ -153,7 +155,7 @@
 }
 @media (max-width: 480px) {
   .contact-form-section {
-    padding: 24px;
+    padding: 24px 24px 16px;
   }
   .contact-form-row {
     grid-template-columns: minmax(0, 1fr);
