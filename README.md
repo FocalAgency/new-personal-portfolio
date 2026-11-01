@@ -2,7 +2,7 @@
 
 My personal website, bringing together selected development projects, professional experience and the tools I work with. Built with Next.js and TypeScript, with a monochrome visual identity, restrained crimson accents and responsive layouts.
 
-![Desktop preview of Kasam Ali’s personal portfolio](docs/preview.jpg)
+![Desktop preview of Kasam Ali’s personal portfolio](.github/preview.jpg)
 
 ## Overview
 
@@ -64,7 +64,6 @@ public/
   fonts/                Local fonts and licence notices
   images/               Hero artwork and project screenshots
 tests/                  Content and contact-request tests
-docs/                   Architecture, security and verification notes
 ```
 
 ## Customization
@@ -74,12 +73,6 @@ Update portfolio content in `src/data/portfolio.ts`, section layouts in `src/com
 The contact form uses a public Web3Forms identifier in `src/lib/contact.ts`. No environment file is required for local development. Configure your own provider account and verify delivery before using the form for a different recipient.
 
 Private project implementations are described without publishing their source code. Their screenshots show related public platforms for context.
-
-## Documentation
-
-- [Architecture and editing guide](docs/architecture.md)
-- [Security review and verification limits](docs/security.md)
-- [Build and browser verification](docs/verification.md)
 
 ## Licence
 
