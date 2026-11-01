@@ -49,7 +49,6 @@ test("private case studies distinguish public platform links from private implem
 
 test("contact, work history and skills supply the homepage without placeholder records", () => {
   assert.ok(profile.name.trim());
-  assert.match(profile.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
   assert.ok(profile.location.trim());
   assert.equal(profile.socials.length, 3);
   for (const social of profile.socials) {

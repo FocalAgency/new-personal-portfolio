@@ -1,14 +1,21 @@
 .contact-form-section {
-  max-width: 680px;
+  max-width: 1040px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 56px;
+  padding: 40px;
+  background: var(--white);
+  border: 1px solid var(--dark-line);
+  border-radius: 6px;
 }
 .contact-form-intro {
-  margin-bottom: 32px;
+  max-width: 300px;
 }
 .contact-form-intro h2 {
   font-family: var(--font-display), sans-serif;
   font-weight: 500;
-  font-size: clamp(30px, 4vw, 40px);
+  font-size: clamp(30px, 3.4vw, 44px);
   letter-spacing: -0.045em;
   line-height: 1.15;
 }
@@ -48,7 +55,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   min-width: 0;
 }
 .contact-form-field label {
@@ -62,11 +69,11 @@
   min-width: 0;
   min-height: 48px;
   border: 0;
-  border-bottom: 1px solid var(--light-muted);
+  border-bottom: 1px solid var(--field-border);
   border-radius: 0;
   background: transparent;
   color: var(--ink);
-  padding: 8px 2px;
+  padding: 10px 0;
   font: inherit;
   font-size: 16px;
   line-height: 1.5;
@@ -74,26 +81,32 @@
 }
 .contact-form-field textarea {
   resize: vertical;
+  min-height: 112px;
+}
+.contact-form-field input::placeholder,
+.contact-form-field textarea::placeholder {
+  color: var(--light-muted);
 }
 .contact-form-field input:focus-visible,
 .contact-form-field textarea:focus-visible {
   outline: 2px solid var(--accent-ink);
-  outline-offset: 4px;
+  outline-offset: 3px;
   border-color: var(--accent-ink);
 }
 .contact-form-actions {
   display: flex;
   align-items: center;
   gap: 24px;
+  justify-content: flex-end;
 }
 .contact-form-submit {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  min-height: 52px;
+  min-height: 48px;
   flex-shrink: 0;
-  padding: 14px 22px;
+  padding: 12px 20px;
   border: 0;
   border-radius: 4px;
   background: var(--ink);
@@ -124,14 +137,24 @@
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
-.contact-form-status a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 .contact-form-honeypot {
   display: none;
 }
+@media (max-width: 900px) {
+  .contact-form-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    max-width: 680px;
+    padding: 32px;
+  }
+  .contact-form-intro {
+    max-width: 480px;
+  }
+}
 @media (max-width: 480px) {
+  .contact-form-section {
+    padding: 24px;
+  }
   .contact-form-row {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;

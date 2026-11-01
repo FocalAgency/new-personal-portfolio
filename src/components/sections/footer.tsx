@@ -1,6 +1,5 @@
 import { profile } from "@/data/portfolio";
 import { BrandMark } from "@/components/ui/icons";
-import { CopyEmail } from "@/components/ui/copy-email";
 
 export function Footer() {
   return (
@@ -10,12 +9,6 @@ export function Footer() {
           <a href="#home" className="footer-brand">
             <BrandMark width="24" height="24" /> KASAM ALI
           </a>
-          <div className="footer-email-group">
-            <a className="footer-email" href={`mailto:${profile.email}`}>
-              {profile.email}
-            </a>
-            <CopyEmail email={profile.email} />
-          </div>
           <nav className="footer-socials" aria-label="Social links">
             {profile.socials.map((social) => (
               <a

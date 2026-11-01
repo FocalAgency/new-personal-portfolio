@@ -26,19 +26,19 @@ The servers bind to localhost. To use another port, append `-- --port 3001` to t
 
 ## Editing
 
-| Change                                            | Location                                            |
-| ------------------------------------------------- | --------------------------------------------------- |
-| Projects, experience, skills and contact links    | `src/data/portfolio.ts`                             |
-| Homepage section order                            | `src/app/page.tsx`                                  |
-| Hero, about, work, experience, contact and footer layout  | `src/components/sections/`                          |
-| Colours, spacing, typography and responsive rules | `src/styles/`                                       |
-| Contact fields and feedback                       | `src/components/contact/`                           |
-| Contact endpoint and public form identifier       | `src/lib/contact.ts`                                |
-| Navigation, icons and clipboard control           | `src/components/ui/`                                |
-| Page animations                                   | `src/components/motion/page-motion.tsx`             |
-| Browser title, description and local fonts        | `src/app/layout.tsx`                                |
-| Browser-tab icon                                  | `src/app/icon.svg`                                  |
-| Artwork and screenshots                           | `public/images/hero/` and `public/images/projects/` |
+| Change                                                   | Location                                            |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| Projects, experience, skills and contact links           | `src/data/portfolio.ts`                             |
+| Homepage section order                                   | `src/app/page.tsx`                                  |
+| Hero, about, work, experience, contact and footer layout | `src/components/sections/`                          |
+| Colours, spacing, typography and responsive rules        | `src/styles/`                                       |
+| Contact fields and feedback                              | `src/components/contact/`                           |
+| Contact endpoint and public form identifier              | `src/lib/contact.ts`                                |
+| Navigation and shared icons                              | `src/components/ui/`                                |
+| Page animations                                          | `src/components/motion/page-motion.tsx`             |
+| Browser title, description and local fonts               | `src/app/layout.tsx`                                |
+| Browser-tab icon                                         | `src/app/icon.svg`                                  |
+| Artwork and screenshots                                  | `public/images/hero/` and `public/images/projects/` |
 
 The Bankai artwork is desktop-only and keeps the selected original file. The logo SVGs are in `public/brand/`; font licences are in `public/fonts/licenses/`. Tabb and Moonstone are private implementation work; their images show related public sites rather than private internal interfaces.
 

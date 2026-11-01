@@ -5,7 +5,7 @@ src/
   app/                   Next.js routes, metadata, favicon and CSS entry
   components/
     sections/            Server-rendered homepage sections
-    ui/                  Shared navigation, icons and clipboard control
+    ui/                  Shared navigation and icons
     projects/            Filterable project gallery
     contact/             Form fields, feedback and form styles
     motion/              Animation lifecycle and reduced-motion handling

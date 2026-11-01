@@ -114,12 +114,10 @@ export const projects: Project[] = [
 
 export const profile: {
   name: string;
-  email: string;
   location: string;
   socials: { name: string; href: string }[];
 } = {
   name: "Kasam Ali",
-  email: "ka276310@gmail.com",
   location: "United Kingdom",
   socials: [
     { name: "GitHub", href: "https://github.com/FocalAgency" },

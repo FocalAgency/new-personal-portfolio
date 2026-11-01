@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useRef, useState, type FormEvent } from "react";
-import { profile } from "@/data/portfolio";
 import { ArrowIcon } from "@/components/ui/icons";
 import {
   CONTACT_ACCESS_KEY,
@@ -39,10 +38,7 @@ export function ContactForm() {
     <div className="contact-form-section">
       <div className="contact-form-intro">
         <h2 id="contact-title">Start a conversation.</h2>
-        <p>
-          A new website, an app, or a project to bring to life — tell me a
-          little about it.
-        </p>
+        <p>Have a project or opportunity in mind? I’d like to hear about it.</p>
       </div>
       <form
         className="contact-form"
@@ -76,6 +72,7 @@ export function ContactForm() {
                 name="name"
                 type="text"
                 autoComplete="name"
+                placeholder="Your name"
                 maxLength={120}
                 required
               />
@@ -87,6 +84,7 @@ export function ContactForm() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                placeholder="you@example.com"
                 maxLength={254}
                 required
               />
@@ -98,6 +96,7 @@ export function ContactForm() {
               id={`${id}-message`}
               name="message"
               rows={4}
+              placeholder="Tell me a little about what you have in mind."
               maxLength={5000}
               required
             />
@@ -121,8 +120,7 @@ export function ContactForm() {
           {status === "error" && (
             <>
               I couldn’t confirm your message was sent. Your entries are still
-              here. You can also email me at{" "}
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>.
+              here. Please try again in a moment.
             </>
           )}
         </div>
