@@ -1,0 +1,14 @@
+.contact {
+  --accent: var(--accent-ink);
+  background: var(--paper);
+  color: var(--ink);
+  max-width: none;
+  padding-top: 72px;
+  padding-bottom: 48px;
+}
+@media (max-width: 760px) {
+  .contact {
+    padding-top: 48px;
+    padding-bottom: 24px;
+  }
+}
