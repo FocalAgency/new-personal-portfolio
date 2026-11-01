@@ -1,49 +1,86 @@
-# Kasam Ali — Portfolio
+# Personal Portfolio · Kasam Ali
 
-![Portfolio website preview](docs/preview.jpg)
+My personal website, bringing together selected development projects, professional experience and the tools I work with. Built with Next.js and TypeScript, with a monochrome visual identity, restrained crimson accents and responsive layouts.
 
-Personal developer portfolio built with Next.js, React, TypeScript and CSS. The homepage includes selected projects, experience and a contact form. Project cards have hover effects and do not open previews.
+![Desktop preview of Kasam Ali’s personal portfolio](docs/preview.jpg)
 
-## Development
+## Overview
 
-Use Node.js 22.18 or newer.
+- Selected work across full-stack applications and creative web development.
+- Professional experience at Focal Studio and Lunim Studio / Tabb.
+- A filterable project gallery and a streamlined contact form.
+- Self-hosted typography, optimized local images and reduced-motion support.
+
+## Technology
+
+| Area       | Technology                                       |
+| ---------- | ------------------------------------------------ |
+| Framework  | Next.js App Router, React                        |
+| Language   | TypeScript                                       |
+| Styling    | CSS with shared design tokens and section styles |
+| Motion     | Web Animations API and Intersection Observer     |
+| Contact    | Web3Forms                                        |
+| Typography | Archivo and Inter Tight, self-hosted             |
+
+## Getting started
+
+Requires **Node.js 22.18 or later** and npm.
 
 ```sh
+git clone https://github.com/FocalAgency/new-personal-portfolio.git
+cd new-personal-portfolio
 npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. Open this folder directly in VS Code; no special extensions or generated setup scripts are required.
+Open [localhost:3000](http://127.0.0.1:3000). The project can be opened directly in VS Code.
 
-```sh
-npm test
-npm run typecheck
-npm run build
-npm start
+| Command             | Purpose                               |
+| ------------------- | ------------------------------------- |
+| `npm run dev`       | Start the development server          |
+| `npm run build`     | Create the production build           |
+| `npm start`         | Serve the production build locally    |
+| `npm run typecheck` | Check TypeScript types                |
+| `npm test`          | Run content and contact-request tests |
+
+To use another port, append `-- --port 3001` to the development or start command.
+
+## Project structure
+
+```text
+src/
+  app/                  Routes, metadata and global style entry
+  components/
+    sections/           Homepage sections and footer
+    ui/                 Navigation and shared icons
+    projects/           Filterable project gallery
+    contact/            Contact form and feedback
+    motion/             Animation lifecycle
+  data/portfolio.ts     Projects, experience, skills and social links
+  lib/contact.ts        Contact provider integration
+  styles/               Design tokens and section styles
+public/
+  brand/                Logo assets
+  fonts/                Local fonts and licence notices
+  images/               Hero artwork and project screenshots
+tests/                  Content and contact-request tests
+docs/                   Architecture, security and verification notes
 ```
 
-The servers bind to localhost. To use another port, append `-- --port 3001` to the dev or start command.
+## Customization
 
-## Editing
+Update portfolio content in `src/data/portfolio.ts`, section layouts in `src/components/sections/`, and shared colours, spacing and typography in `src/styles/base.css`.
 
-| Change                                                   | Location                                            |
-| -------------------------------------------------------- | --------------------------------------------------- |
-| Projects, experience, skills and contact links           | `src/data/portfolio.ts`                             |
-| Homepage section order                                   | `src/app/page.tsx`                                  |
-| Hero, about, work, experience, contact and footer layout | `src/components/sections/`                          |
-| Colours, spacing, typography and responsive rules        | `src/styles/`                                       |
-| Contact fields and feedback                              | `src/components/contact/`                           |
-| Contact endpoint and public form identifier              | `src/lib/contact.ts`                                |
-| Navigation and shared icons                              | `src/components/ui/`                                |
-| Page animations                                          | `src/components/motion/page-motion.tsx`             |
-| Browser title, description and local fonts               | `src/app/layout.tsx`                                |
-| Browser-tab icon                                         | `src/app/icon.svg`                                  |
-| Artwork and screenshots                                  | `public/images/hero/` and `public/images/projects/` |
+The contact form uses a public Web3Forms identifier in `src/lib/contact.ts`. No environment file is required for local development. Configure your own provider account and verify delivery before using the form for a different recipient.
 
-The Bankai artwork is desktop-only and keeps the selected original file. The logo SVGs are in `public/brand/`; font licences are in `public/fonts/licenses/`. Tabb and Moonstone are private implementation work; their images show related public sites rather than private internal interfaces.
+Private project implementations are described without publishing their source code. Their screenshots show related public platforms for context.
 
-## Contact and security
+## Documentation
 
-The form reuses the existing Web3Forms public access key. Visitors submit their name, email and message directly to Web3Forms over HTTPS. The identifier is intentionally public; it is not a server credential. No environment file is required for local development. If the recipient/account changes, replace the public identifier in `src/lib/contact.ts` and verify delivery in that account.
+- [Architecture and editing guide](docs/architecture.md)
+- [Security review and verification limits](docs/security.md)
+- [Build and browser verification](docs/verification.md)
 
-See [architecture](docs/architecture.md), [security checks and remaining limits](docs/security.md) and [verification](docs/verification.md). No analytics, database, authentication or payment features are configured.
+## Licence
+
+This personal project does not include an open-source licence. Font licence notices are included in `public/fonts/licenses/`.
