@@ -1,6 +1,14 @@
 import type { SVGProps } from "react";
 
-export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
+export function ArrowIcon({
+  direction = "up-right",
+  ...props
+}: SVGProps<SVGSVGElement> & { direction?: "up-right" | "up" | "down" }) {
+  const paths = {
+    "up-right": "M5 19 19 5M5 5h14v14",
+    up: "M12 19V5M5 12l7-7 7 7",
+    down: "M12 5v14M5 12l7 7 7-7",
+  };
   return (
     <svg
       width="20"
@@ -11,7 +19,7 @@ export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path
-        d="M5 19 19 5M5 5h14v14"
+        d={paths[direction]}
         stroke="currentColor"
         strokeWidth="1.6"
         strokeLinecap="round"

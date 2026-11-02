@@ -17,9 +17,9 @@ export function Work() {
       </div>
       <div className="section-heading">
         <h2 id="work-heading">
-          Ideas made
+          Selected
           <br />
-          <span>tangible.</span>
+          <span>work.</span>
           <sup>({projectCount})</sup>
         </h2>
         <p>

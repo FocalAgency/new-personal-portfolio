@@ -12,7 +12,16 @@ export function About() {
           BUILT <span>WITH INTENTION</span>
         </span>
         <a href="#about">
-          SCROLL DOWN <span className="bar-arrow">↓</span>
+          SCROLL DOWN{" "}
+          <span className="bar-arrow">
+            <span className="desktop-arrow">↓</span>
+            <ArrowIcon
+              className="mobile-arrow"
+              direction="down"
+              width="16"
+              height="16"
+            />
+          </span>
         </a>
         <span>CODE IN THE DETAILS</span>
       </div>

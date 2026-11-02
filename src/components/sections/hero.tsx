@@ -66,9 +66,14 @@ export function Hero() {
             <br className="desktop-break" /> to build websites that feel a
             little different.
           </p>
-          <a className="button button-dark" href="#work">
-            Explore my work <ArrowIcon />
-          </a>
+          <div className="hero-actions">
+            <a className="button button-dark" href="#work">
+              Explore my work <ArrowIcon />
+            </a>
+            <a className="button hero-contact-action" href="#contact">
+              Let’s talk <ArrowIcon />
+            </a>
+          </div>
         </div>
       </div>
       <div className="hero-side" data-enter>

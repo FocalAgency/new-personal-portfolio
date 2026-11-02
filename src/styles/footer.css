@@ -56,6 +56,19 @@
   align-items: center;
   min-height: 44px;
 }
+.mobile-back-top {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .desktop-back-top {
+    display: none;
+  }
+  .mobile-back-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
 @media (max-width: 900px) {
   .footer-contact {
     grid-template-columns: 1fr 1fr;

@@ -1,5 +1,5 @@
 import { profile } from "@/data/portfolio";
-import { BrandMark } from "@/components/ui/icons";
+import { ArrowIcon, BrandMark } from "@/components/ui/icons";
 
 export function Footer() {
   return (
@@ -24,7 +24,12 @@ export function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Kasam Ali</span>
-          <a href="#home">Back to top ↑</a>
+          <a href="#home">
+            <span className="desktop-back-top">Back to top ↑</span>
+            <span className="mobile-back-top">
+              Back to top <ArrowIcon direction="up" width="15" height="15" />
+            </span>
+          </a>
         </div>
       </div>
     </footer>
