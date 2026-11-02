@@ -107,7 +107,7 @@ export const projects: Project[] = [
     imageAlt:
       "Public Lunim film-project landing page titled The Moonstone Legacy Quartet.",
     imageNote:
-      "The inherited image shows the public Lunim film site for context; it is not a screenshot of the private admin module. Source code is private.",
+      "The image shows the public Lunim film site for context; it is not a screenshot of the private admin module. Source code is private.",
     private: true,
   },
 ];

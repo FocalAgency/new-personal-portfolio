@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { profile, type Project } from "@/data/portfolio";
 import { ArrowIcon } from "@/components/ui/icons";
 
@@ -13,6 +13,8 @@ const filters = [
 ] as const;
 
 export function ProjectGallery({ projects }: { projects: Project[] }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [selected, setSelected] = useState<Project | null>(null);
   const [filter, setFilter] = useState<(typeof filters)[number]>("All work");
   const availableFilters = filters.filter(
     (label) =>
@@ -69,7 +71,15 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
       <div className="project-grid">
         {visible.map((project) => (
           <article className="project-card" key={project.slug}>
-            <div className="project-media">
+            <button
+              type="button"
+              className="project-media"
+              aria-label={`Preview ${project.title}`}
+              onClick={() => {
+                setSelected(project);
+                dialogRef.current?.showModal();
+              }}
+            >
               <span className={`project-image project-image-${project.slug}`}>
                 <Image
                   src={project.image}
@@ -77,11 +87,12 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
                   fill
                   sizes="(max-width: 760px) 90vw, 45vw"
                 />
+                <span className="project-view">View project <ArrowIcon width="15" height="15" /></span>
                 {project.private && (
                   <span className="private-label">Private project</span>
                 )}
               </span>
-            </div>
+            </button>
             <div className="project-caption">
               <div>
                 <p className="project-category">{project.category}</p>
@@ -103,6 +114,67 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
           </article>
         ))}
       </div>
+      <dialog
+        ref={dialogRef}
+        className="project-dialog"
+        aria-labelledby="project-dialog-title"
+        onClose={() => setSelected(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close();
+        }}
+      >
+        {selected && (
+          <div className="project-preview">
+            <div className="preview-topline">
+              <div className="preview-heading">
+                <span className="preview-category">{selected.category}{selected.private && " · Private project"}</span>
+                <h3 id="project-dialog-title">{selected.title}</h3>
+              </div>
+              <button
+                type="button"
+                className="preview-close"
+                onClick={() => dialogRef.current?.close()}
+                aria-label="Close project preview"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 3l10 10M13 3 3 13" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </button>
+            </div>
+            <div className="preview-image">
+              <Image
+                src={selected.image}
+                alt={selected.imageAlt}
+                fill
+                sizes="(max-width: 760px) 90vw, 660px"
+              />
+            </div>
+            <div className="preview-content">
+              <p>{selected.summary}</p>
+              {selected.imageNote && <p className="preview-note">{selected.imageNote}</p>}
+              <div className="preview-details">
+                <span className="preview-detail-label">Technologies</span>
+                <ul className="project-tags" aria-label={`${selected.title} technologies`}>
+                  {selected.stack.map((tag) => <li key={tag}>{tag}</li>)}
+                </ul>
+              </div>
+              {selected.externalUrl && (
+                <div className="preview-footer">
+                  <a
+                    className="preview-link"
+                    href={selected.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${selected.externalLabel} (opens in a new tab)`}
+                  >
+                    {selected.externalLabel} <ArrowIcon width="16" height="16" />
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </dialog>
     </>
   );
 }

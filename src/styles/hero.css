@@ -87,7 +87,7 @@
 }
 .hero-photo {
   position: absolute;
-  left: 30%;
+  left: 33%;
   top: -5%;
   width: 52%;
   height: 115%;
@@ -379,7 +379,7 @@
 }
 @media (min-width: 1600px) {
   .hero-photo {
-    left: 32%;
+    left: 35%;
     width: 52%;
     top: -5%;
   }
@@ -432,7 +432,7 @@
     font-size: 76px;
   }
   .hero-photo {
-    left: 27%;
+    left: 30%;
     width: 65%;
     top: 0;
     height: 104%;
