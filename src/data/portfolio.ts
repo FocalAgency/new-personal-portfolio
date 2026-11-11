@@ -136,13 +136,16 @@ export const experiences: {
   details: string[];
 }[] = [
   {
-    role: "Software Developer",
-    company: "Focal Studio · Product Design Agency",
+    role: "Software Engineer",
+    company: "Focal Studio · Product Design & Development",
     period: "2025–present",
     details: [
-      "Contributed to the design and development of websites and web applications for client projects.",
-      "Built reusable interfaces and CMS-driven content workflows to help teams manage pages, content and updates.",
-      "Worked across frontend and backend implementation, connecting interfaces with APIs and content services.",
+      "Design and develop point-of-sale (POS) systems, team dashboards, and booking and scheduling applications.",
+      "Build responsive interfaces, backend services and databases, integrating APIs to meet client requirements.",
+      "Manage projects from requirements gathering and interface design through testing, deployment and ongoing updates.",
+      "Research prospective clients and promote services through cold calling, personalised emails and social media outreach.",
+      "Present project demos, clarify client requirements, and coordinate timelines and feedback.",
+      "Develop skills in full-stack development, project management, client communication, marketing, lead generation and business ownership.",
     ],
   },
   {

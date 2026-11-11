@@ -57,9 +57,9 @@ test("contact, work history and skills supply the homepage without placeholder r
   }
   assert.deepEqual(
     experiences.map(({ company }) => company),
-    ["Focal Studio · Product Design Agency", "Lunim Studio / Tabb"],
+    ["Focal Studio · Product Design & Development", "Lunim Studio / Tabb"],
   );
-  assert.equal(experiences[0].role, "Software Developer");
+  assert.equal(experiences[0].role, "Software Engineer");
   for (const experience of experiences) {
     assert.ok(experience.role && experience.company && experience.period);
     assert.ok(experience.details.length > 0);
