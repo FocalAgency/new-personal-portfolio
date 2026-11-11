@@ -13,14 +13,14 @@ My personal website, bringing together selected development projects, profession
 
 ## Technology
 
-| Area       | Technology                                       |
-| ---------- | ------------------------------------------------ |
-| Framework  | Next.js App Router, React                        |
-| Language   | TypeScript                                       |
-| Styling    | CSS with shared design tokens and section styles |
-| Motion     | Web Animations API and Intersection Observer     |
-| Contact    | Web3Forms                                        |
-| Typography | Archivo and Inter Tight, self-hosted             |
+| Area       | Technology                                      |
+| ---------- | ----------------------------------------------- |
+| Framework  | Next.js App Router, React                       |
+| Language   | TypeScript                                      |
+| Styling    | Tailwind CSS v4 with inline component utilities |
+| Motion     | Web Animations API and Intersection Observer    |
+| Contact    | Web3Forms                                       |
+| Typography | Archivo and Inter Tight, self-hosted            |
 
 ## Getting started
 
@@ -51,16 +51,12 @@ To use another port, append `-- --port 3001` to the development or start command
 src/
   app/                  Routes, metadata and global style entry
   components/
-    sections/           Homepage sections and footer
-    ui/                 Navigation and shared icons
-    projects/           Filterable project gallery
-    contact/            Contact form and feedback
-    motion/             Animation lifecycle
+    home/               Homepage sections, gallery, contact form and motion
+    layout/             Shared navigation and footer
+    ui/                 Shared icons
   data/portfolio.ts     Projects, experience, skills and social links
   lib/contact.ts        Contact provider integration
-  styles/               Design tokens and section styles
 public/
-  brand/                Logo assets
   fonts/                Local fonts and licence notices
   images/               Hero artwork and project screenshots
 tests/                  Content and contact-request tests
@@ -68,7 +64,7 @@ tests/                  Content and contact-request tests
 
 ## Customization
 
-Update portfolio content in `src/data/portfolio.ts`, section layouts in `src/components/sections/`, and shared colours, spacing and typography in `src/styles/base.css`.
+Update portfolio content in `src/data/portfolio.ts`, section layouts in `src/components/home/`, and Tailwind utilities directly in those components. Shared design tokens and global defaults live in `src/app/globals.css`.
 
 The contact form uses a public Web3Forms identifier in `src/lib/contact.ts`. No environment file is required for local development. Configure your own provider account and verify delivery before using the form for a different recipient.
 

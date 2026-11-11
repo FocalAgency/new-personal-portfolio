@@ -15,7 +15,7 @@ export function PageMotion() {
       const photo = document.querySelector<HTMLElement>("[data-parallax]");
       const statement = document.querySelector<HTMLElement>("[data-statement]");
       const words = Array.from(
-        statement?.querySelectorAll<HTMLElement>(".statement-word") ?? [],
+        statement?.querySelectorAll<HTMLElement>("[data-statement-word]") ?? [],
       );
       let frame = 0;
       root.classList.add("motion-ready");
@@ -54,7 +54,7 @@ export function PageMotion() {
         ),
       );
       const photoEntrance = document.querySelector<HTMLElement>(
-        ".hero-photo-entrance",
+        "[data-photo-entrance]",
       );
       if (photoEntrance)
         animations.push(

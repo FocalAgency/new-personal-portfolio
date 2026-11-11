@@ -38,7 +38,10 @@ export default function RootLayout({
   return (
     <html lang="en-GB" data-scroll-behavior="smooth">
       <body className={`${archivo.variable} ${inter.variable}`}>
-        <a className="skip-link" href="#main">
+        <a
+          className="fixed top-[12px] left-[12px] z-[100] bg-off-white text-ink p-[16px] [transform:translateY(-200%)] focus:[transform:translateY(0)]"
+          href="#main"
+        >
           Skip to content
         </a>
         {children}

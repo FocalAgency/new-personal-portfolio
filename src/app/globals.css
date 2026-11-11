@@ -1,7 +1,119 @@
-@import "../styles/base.css";
-@import "../styles/hero.css";
-@import "../styles/about.css";
-@import "../styles/projects.css";
-@import "../styles/experience.css";
-@import "../styles/contact.css";
-@import "../styles/footer.css";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-black: var(--black);
+  --color-off-white: var(--white);
+  --color-muted: var(--muted);
+  --color-light-muted: var(--light-muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-on-dark: var(--accent-on-dark);
+  --color-line: var(--line);
+  --color-dark-line: var(--dark-line);
+  --color-field-border: var(--field-border);
+}
+
+@layer base {
+  :root {
+    --paper: #dadada;
+    --ink: #111;
+    --black: #080808;
+    --white: #f4f4f4;
+    --muted: #aaa;
+    --light-muted: #555;
+    --field-border: #777;
+    --accent: #e1636a;
+    --accent-ink: #b22d38;
+    --accent-on-dark: #e1636a;
+    --line: rgba(255, 255, 255, 0.2);
+    --dark-line: rgba(17, 17, 17, 0.2);
+    --gutter: clamp(24px, 4.2vw, 80px);
+    --max-width: 1600px;
+    --radius: 12px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 30px;
+  }
+  body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body), Arial, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    cursor: pointer;
+  }
+  a,
+  button {
+    touch-action: manipulation;
+  }
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+  ::selection {
+    background: var(--accent-ink);
+    color: var(--white);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  svg {
+    flex-shrink: 0;
+  }
+  img {
+    max-width: 100%;
+  }
+
+  @media (max-width: 760px) {
+    html {
+      scroll-padding-top: 20px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *:before,
+    *:after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
