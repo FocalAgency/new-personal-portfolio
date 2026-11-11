@@ -52,10 +52,12 @@ export function About() {
           className="mx-auto mt-[100px] mb-0 max-w-[1040px] text-[clamp(34px,3.8vw,64px)] font-[450] leading-[1.28] tracking-[-0.035em] [text-wrap:pretty] [@media(max-width:760px)]:mt-[55px] [@media(max-width:760px)]:text-[30px] [@media(max-width:760px)]:leading-[1.35]"
           id="about-heading"
           data-statement
+          aria-label={statement}
         >
           {statement.split(" ").map((word, i) => (
             <span
               data-statement-word
+              aria-hidden="true"
               className="text-off-white [@media(prefers-reduced-motion:reduce)]:text-off-white!"
               key={i}
             >

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, type PointerEvent } from "react";
 import { profile, type Project } from "@/data/portfolio";
 import { ArrowIcon } from "@/components/ui/icons";
 
@@ -13,6 +13,26 @@ const filters = [
 ] as const;
 
 export function ProjectGallery({ projects }: { projects: Project[] }) {
+  function moveProjectControl(event: PointerEvent<HTMLButtonElement>) {
+    if (
+      event.pointerType !== "mouse" ||
+      !window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return;
+    const button = event.currentTarget;
+    const bounds = button.getBoundingClientRect();
+    const pointerY = event.clientY - bounds.top;
+    if (pointerY < 0 || pointerY > bounds.height) {
+      button.dataset.tracking = "false";
+      return;
+    }
+    const x = Math.min(Math.max(event.clientX - bounds.left - 72, 12), bounds.width - 156);
+    const y = Math.min(Math.max(pointerY + 18, 12), bounds.height - 56);
+    button.style.setProperty("--preview-x", `${x}px`);
+    button.style.setProperty("--preview-y", `${y}px`);
+    button.dataset.tracking = "true";
+  }
+
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [selected, setSelected] = useState<Project | null>(null);
   const [filter, setFilter] = useState<(typeof filters)[number]>("All work");
@@ -28,7 +48,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
       : projects.filter((project) => project.category === activeFilter);
   return (
     <>
-      <div className="flex items-center justify-between gap-[24px] [border-top:1px_solid_var(--line)] pt-[20px] pb-[35px] [@media(max-width:760px)]:block [@media(max-width:760px)]:gap-0 [@media(max-width:760px)]:pt-[18px] [@media(max-width:760px)]:pb-[26px]">
+      <div data-reveal className="flex items-center justify-between gap-[24px] [border-top:1px_solid_var(--line)] pt-[20px] pb-[35px] [@media(max-width:760px)]:block [@media(max-width:760px)]:gap-0 [@media(max-width:760px)]:pt-[18px] [@media(max-width:760px)]:pb-[26px]">
         <div
           className="flex flex-wrap gap-[6px] [@media(max-width:760px)]:gap-[2px]"
           role="group"
@@ -72,16 +92,19 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
           {visible.length.toString().padStart(2, "0")} projects
         </span>
       </div>
-      <div className="grid grid-cols-2 gap-x-[28px] gap-y-[65px] [@media(max-width:760px)]:grid-cols-[1fr] [@media(max-width:760px)]:gap-[42px]">
+      <div data-project-grid className="grid grid-cols-2 items-start gap-x-[28px] gap-y-[65px] [@media(max-width:760px)]:grid-cols-[1fr] [@media(max-width:760px)]:gap-[42px]">
         {visible.map((project) => (
           <article
-            className="relative min-w-0 [&:hover_img]:[filter:grayscale(0)] [&:hover_img]:[transform:scale(1.025)] [&:focus-within_img]:[filter:grayscale(0)] [&:focus-within_img]:[transform:scale(1.025)]"
+            data-reveal
+            className="group/project relative min-w-0 [@media(min-width:1001px)]:even:mt-[72px] [&:hover_img]:[filter:grayscale(0)] [&:hover_img]:[transform:scale(1.025)] [&:focus-within_img]:[filter:grayscale(0)] [&:focus-within_img]:[transform:scale(1.025)]"
             key={project.slug}
           >
             <button
               type="button"
-              className="block w-full rounded-[6px] border-0 bg-transparent p-0 text-left after:absolute after:inset-0 after:content-[''] focus-visible:[outline:2px_solid_var(--accent)] focus-visible:outline-offset-[5px]"
+              className="group/image block w-full rounded-[6px] border-0 bg-transparent p-0 text-left after:absolute after:inset-0 after:content-[''] focus-visible:[outline:2px_solid_var(--accent)] focus-visible:outline-offset-[5px]"
               aria-label={`Preview ${project.title}`}
+              onPointerMove={moveProjectControl}
+              onPointerLeave={(event) => { event.currentTarget.dataset.tracking = "false"; }}
               onClick={() => {
                 setSelected(project);
                 dialogRef.current?.showModal();
@@ -95,8 +118,18 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
                   fill
                   sizes="(max-width: 760px) 90vw, 45vw"
                 />
-                <span className="absolute right-[16px] bottom-[16px] inline-flex min-h-[36px] items-center gap-[10px] rounded-[30px] bg-[rgba(17,17,17,0.88)] px-[13px] py-0 text-[11px] text-off-white [&_svg]:text-accent">
-                  View project <ArrowIcon width="15" height="15" />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute right-[16px] bottom-[16px] inline-flex min-h-[44px] items-center gap-[14px] rounded-full bg-off-white px-[16px] text-[12px] font-medium text-ink shadow-[0_4px_20px_#0002] transition-opacity duration-200 group-data-[tracking=true]/image:opacity-0 [@media(hover:none)]:opacity-100! motion-reduce:opacity-100! motion-reduce:transition-none [&_svg]:text-accent-ink"
+                >
+                  View project <ArrowIcon width="16" height="16" />
+                </span>
+                <span
+                  aria-hidden="true"
+                  data-project-control
+                  className="pointer-events-none absolute top-0 left-0 inline-flex min-h-[44px] w-[144px] items-center justify-center gap-[14px] rounded-full bg-off-white text-[12px] font-medium text-ink opacity-0 shadow-[0_4px_20px_#0002] [transform:translate3d(var(--preview-x,0px),var(--preview-y,0px),0)] [transition:opacity_0.2s,transform_0.16s_ease-out] group-data-[tracking=true]/image:opacity-100 [@media(hover:none)]:hidden motion-reduce:hidden [&_svg]:text-accent-ink"
+                >
+                  View project <ArrowIcon width="16" height="16" />
                 </span>
                 {project.private && (
                   <span className="absolute top-[16px] left-[16px] rounded-[30px] border border-solid border-[#ffffff30] bg-[#151515df] px-[12px] py-[8px] text-[10px] text-off-white backdrop-blur-[8px] [@media(max-width:760px)]:top-[12px] [@media(max-width:760px)]:left-[12px] [@media(max-width:760px)]:text-[9px]">

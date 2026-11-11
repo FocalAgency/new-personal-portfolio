@@ -133,6 +133,64 @@ export function PageMotion() {
         { threshold: 0.5 },
       );
       counters.forEach((el) => observer.observe(el));
+      const revealAnimations = new Map<HTMLElement, Animation>();
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const element = entry.target as HTMLElement;
+            revealAnimations.get(element)?.play();
+            revealObserver.unobserve(element);
+          });
+        },
+        { threshold: 0.01 },
+      );
+      function observeReveal(element: HTMLElement) {
+        if (revealAnimations.has(element)) return;
+        const animation = element.animate(
+          [
+            { opacity: 0, transform: "translateY(6px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          {
+            duration: 450,
+            easing: "cubic-bezier(.2,.65,.3,1)",
+            fill: "backwards",
+          },
+        );
+        animation.pause();
+        animations.push(animation);
+        revealAnimations.set(element, animation);
+        revealObserver.observe(element);
+      }
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach(observeReveal);
+      const projectGrid = document.querySelector("[data-project-grid]");
+      const projectObserver = new MutationObserver((records) => {
+        records.forEach((record) => {
+          record.removedNodes.forEach((node) => {
+            if (!(node instanceof HTMLElement)) return;
+            const animation = revealAnimations.get(node);
+            if (!animation) return;
+            animation.cancel();
+            animations.splice(animations.indexOf(animation), 1);
+            revealAnimations.delete(node);
+            revealObserver.unobserve(node);
+          });
+          record.addedNodes.forEach((node) => {
+            if (node instanceof HTMLElement && node.matches("[data-reveal]")) {
+              observeReveal(node);
+            }
+          });
+        });
+      });
+      if (projectGrid) projectObserver.observe(projectGrid, { childList: true });
+      function revealFocused(event: FocusEvent) {
+        const element = (event.target as HTMLElement).closest<HTMLElement>("[data-reveal]");
+        if (!element) return;
+        revealAnimations.get(element)?.finish();
+        revealObserver.unobserve(element);
+      }
+      document.addEventListener("focusin", revealFocused);
       window.addEventListener("scroll", schedule, { passive: true });
       window.addEventListener("resize", schedule);
       document.addEventListener("visibilitychange", schedule);
@@ -142,11 +200,16 @@ export function PageMotion() {
         timeouts.forEach(clearTimeout);
         animations.forEach((animation) => animation.cancel());
         observer.disconnect();
+        revealObserver.disconnect();
+        projectObserver.disconnect();
+        document.removeEventListener("focusin", revealFocused);
         window.removeEventListener("scroll", schedule);
         window.removeEventListener("resize", schedule);
         document.removeEventListener("visibilitychange", schedule);
         root.classList.remove("motion-ready");
-        words.forEach((word) => word.style.removeProperty("color"));
+        words.forEach((word) => {
+          word.style.removeProperty("color");
+        });
         photo?.style.removeProperty("transform");
         counters.forEach((el) => {
           el.textContent = String(el.dataset.counter).padStart(2, "0");

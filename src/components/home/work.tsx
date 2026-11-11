@@ -18,7 +18,7 @@ export function Work() {
           (02 — SELECTED PROJECTS)
         </span>
       </div>
-      <div className="mt-[70px] mb-[65px] flex flex-wrap items-end justify-between gap-[30px] [@media(max-width:760px)]:mt-[50px] [@media(max-width:760px)]:mb-[35px] [@media(max-width:760px)]:block">
+      <div data-reveal className="mt-[70px] mb-[65px] flex flex-wrap items-end justify-between gap-[30px] [@media(max-width:760px)]:mt-[50px] [@media(max-width:760px)]:mb-[35px] [@media(max-width:760px)]:block">
         <h2
           id="work-heading"
           className="relative [font-family:var(--font-display),sans-serif] text-[clamp(44px,5.5vw,90px)] leading-[0.98] font-[500] tracking-[-0.065em] whitespace-nowrap [@media(max-width:760px)]:inline-block [@media(max-width:760px)]:text-[clamp(32px,9.4vw,64px)] [@media(max-width:760px)]:tracking-[-0.06em]"

@@ -19,7 +19,7 @@ export function Experience() {
         </span>
       </div>
       <div className="mt-[80px] grid grid-cols-[1fr_1.2fr] gap-[110px] [@media(max-width:1100px)_and_(min-width:761px)]:gap-[55px] [@media(max-width:760px)]:mt-[50px] [@media(max-width:760px)]:grid-cols-[1fr] [@media(max-width:760px)]:gap-[40px]">
-        <div>
+        <div data-reveal>
           <h2
             className="[font-family:var(--font-display),sans-serif] text-[clamp(44px,4.5vw,76px)] font-medium leading-[1] tracking-[-0.06em] [@media(max-width:760px)]:text-[52px]"
             id="experience-heading"
@@ -51,6 +51,7 @@ export function Experience() {
         <div>
           {experiences.map((experience, i) => (
             <article
+              data-reveal
               className="[border-top:1px_solid_var(--line)] px-0 pt-[22px] pb-[35px] [@media(max-width:760px)]:pt-[20px] [@media(max-width:760px)]:pb-[30px]"
               key={experience.role}
             >

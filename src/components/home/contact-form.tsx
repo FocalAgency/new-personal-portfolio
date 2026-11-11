@@ -34,7 +34,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="mx-auto grid max-w-[1040px] grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-[56px] bg-white px-[40px] pt-[40px] pb-[24px] [@media(max-width:900px)]:max-w-[680px] [@media(max-width:900px)]:grid-cols-[minmax(0,1fr)] [@media(max-width:900px)]:gap-[28px] [@media(max-width:900px)]:px-[32px] [@media(max-width:900px)]:pt-[32px] [@media(max-width:900px)]:pb-[20px] [@media(max-width:480px)]:px-[24px]! [@media(max-width:480px)]:pt-[24px]! [@media(max-width:480px)]:pb-[16px]!">
+    <div data-reveal className="mx-auto grid max-w-[1040px] grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-[56px] bg-white px-[40px] pt-[40px] pb-[24px] [@media(max-width:900px)]:max-w-[680px] [@media(max-width:900px)]:grid-cols-[minmax(0,1fr)] [@media(max-width:900px)]:gap-[28px] [@media(max-width:900px)]:px-[32px] [@media(max-width:900px)]:pt-[32px] [@media(max-width:900px)]:pb-[20px] [@media(max-width:480px)]:px-[24px]! [@media(max-width:480px)]:pt-[24px]! [@media(max-width:480px)]:pb-[16px]!">
       <div className="max-w-[300px] [@media(max-width:900px)]:max-w-[480px]">
         <h2
           className="[font-family:var(--font-display),sans-serif] text-[clamp(30px,3.4vw,44px)] leading-[1.15] font-medium tracking-[-0.045em]"
