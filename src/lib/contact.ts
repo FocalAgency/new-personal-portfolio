@@ -1,4 +1,4 @@
-export const CONTACT_ACCESS_KEY = "b858e62d-4977-4c34-80b2-3955129ea0e5";
+export const CONTACT_ACCESS_KEY = "5d5ca8ba-7de6-4e99-b5f5-daf299f7616e";
 export const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
 
 type ContactRequest = (url: string, options: RequestInit) => Promise<Response>;
